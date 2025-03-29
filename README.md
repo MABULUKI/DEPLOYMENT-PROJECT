@@ -5,8 +5,8 @@ This is a simple  REST API with two endpoints:
 /5033/students → Returns a list of Software Engineering subjects (Year 1-4).
 
 _**Install & Run**_
-git clone https://github.com/yourusername/cs421-assignment.git  
-cd cs421-assignment  
+git clone (https://github.com/MABULUKI/DEPLOYMENT-PROJECT.git)  
+cd DEPLOYMENT-PROJECT  
 composer install  
 cp .env.example .env  
 php artisan key:generate  
