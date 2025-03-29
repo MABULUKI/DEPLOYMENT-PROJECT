@@ -2,7 +2,7 @@ import express from "express";
 
 const app = express();
 
-app.listen(5004, () => console.log("Api running on port 5004"));
+app.listen(5033, () => console.log("Api running on port 5033"));
 
 //END POINT /students
 app.get("/students", async (req, res) => {
