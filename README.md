@@ -25,7 +25,7 @@ ssh -i C:\Users\M I C R O S P A C E\Downloads\API-PROJECT-KEY-PAIR\API-PROJECT-P
 sudo apt update && sudo apt install -y apache2 php mysql-server  
 
 Deploy API
-git clone https://github.com/yourusername/cs421-assignment.git  
+git clone  https://github.com/MABULUKI/DEPLOYMENT-PROJECT.git  
 cd cs421-assignment  
 composer install  
 php artisan migrate --seed  
