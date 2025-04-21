@@ -2,7 +2,7 @@
 
 LOG_FILE="/var/log/update.log"
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-REPO_DIR="/home/ubuntu/EC2-API-PROJECT"
+REPO_DIR="/home/ubuntu/DEPLOYMENT-PROJECT"
 
 echo "[$TIMESTAMP] Starting system update..." >> $LOG_FILE
 
