@@ -1,124 +1,127 @@
-# DEPLOYMENT-PROJECT
+# 🌐 API DEPLOYMENT
 
-## 📌 Project Overview
+## 📖 About the Project
 
-This project is a RESTful API built using **Node.js (Express)**, designed to handle student data and subject scores. It is deployed on an **AWS EC2 Ubuntu instance** and integrates **Bash automation scripts** to ensure server health, backup operations, and smooth API updates. This was developed for my **CS421 Application Deployment and Management** assignment.
-
----
-
-## 🚀 API Features
-
-### 🔹 Endpoint 1: `GET /students`
-
-- Retrieves a list of **at least 10 students**.
-- Each entry includes:
-  - `name`
-  - `program`
-
-### 🔹 Endpoint 2: `GET /subjects`
-
-- Retrieves available subjects.
-- Each entry includes:
-  - `name`
-  - `code`
-  - `year`
+This is a RESTful API developed using **Express.js with Node.js**, built to manage student details and subject data. It’s hosted on an **Ubuntu-based EC2 instance on AWS**, and enhanced with **automated Bash scripts** for maintaining system performance, backups, and updates. The project was completed as part of the **CS421: Application Deployment and Management** coursework.
 
 ---
 
-## 🛠️ Technologies Used
+## 📡 API Capabilities
 
-| Area              | Tools/Tech                      |
-| ----------------- | ------------------------------- |
-| Backend           | Node.js, Express                |
-| Database          | PostgreSQL                      |
-| Deployment        | AWS EC2 (Ubuntu), Nginx         |
-| Monitoring/Backup | Bash scripting, Cron, `pg_dump` |
-| Version Control   | Git, GitHub                     |
+### 💾 GET `/students`
+
+- Returns a collection of **10+ student records**
+- Each record includes:
+  - Student’s name
+  - Enrolled program
+
+### 💾 GET `/subjects`
+
+- Lists all available academic subjects
+- Each record contains:
+  - Subject name
+  - Unique code
+  - Academic year
 
 ---
 
-## ⚙️ Setup & Installation
+## 🧰 Stack & Tools
 
-### 1. Clone the Repository
+| Component         | Technologies Involved               |
+|------------------|-------------------------------------|
+| Backend           | Node.js, Express                   |
+| Database          | PostgreSQL                         |
+| Server & Hosting  | AWS EC2 (Ubuntu), Nginx            |
+| Automation        | Bash scripts, Cron scheduler, pg_dump |
+| Version Control   | Git, GitHub                        |
+
+---
+
+## 🧱 Setup Instructions
+
+### 🧹 Step 1: Clone the Project
 
 ```bash
 git clone https://github.com/MABULUKI/DEPLOYMENT-PROJECT.git
 cd DEPLOYMENT-PROJECT
 ```
 
-### 2. Install API Dependencies
+### 📆 Step 2: Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Run the API
+### ▶️ Step 3: Launch Locally
 
 ```bash
-node index.js  # For local testing
+node index.js
 ```
 
-### 4. Access Live API Endpoints
+### 🌍 Step 4: Try the Live Endpoints
 
-- `/students`: [http://13.61.18.76:5000/students](http://13.61.18.76:5000/students)
-- `/subjects`: [http://13.61.18.76:5000/subjects](http://13.61.18.76:5000/subjects)
+- [GET /students](http://13.61.18.76:5000/students)
+- [GET /subjects](http://13.61.18.76:5000/subjects)
 
 ---
 
-## 📂 Bash Scripts for Server Management
+## 🛡️ Server Automation Scripts
 
-The following Bash scripts are used to automate important server tasks:
+These Bash scripts help with proactive server management:
 
-| Script             | Purpose                                                                                                                                                   |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `health_check.sh`  | Monitors system health and the API's status, logging results to `/var/log/server_health.log`.                                                             |
-| `backup_api.sh`    | Creates backups of project files and the PostgreSQL database, stored in `/home/ubuntu/backups`. Old backups are automatically removed.                    |
-| `update_server.sh` | Updates the server with the latest security patches, pulls the latest repository changes, and restarts necessary services. Logs to `/var/log/update.log`. |
+| Script File        | Role                                                                                               |
+|--------------------|----------------------------------------------------------------------------------------------------|
+| `health_check.sh`  | Checks server performance and API status, writing output to `/var/log/server_health.log`.          |
+| `backup_api.sh`    | Archives the application and PostgreSQL database to `/home/ubuntu/backups`, purging old backups.   |
+| `update_server.sh` | Applies system updates, pulls repo changes, and restarts services. Outputs to `/var/log/update.log`.|
 
-### 🧪 Running the Scripts
+### 🔧 How to Execute
 
 ```bash
-chmod +x script_name.sh      # Grant executable permissions
-./script_name.sh             # Execute the script
+chmod +x script_name.sh  # Make the script executable
+./script_name.sh         # Run it manually
 ```
 
 ---
 
-## ⏲️ Cron Job Configuration
+## ⏰ Scheduled Automation (Cron Jobs)
 
-To ensure these scripts run at the correct intervals, the following cron jobs are set up:
+These scripts are scheduled for automatic execution via `cron`:
 
 ```cron
-# Run health check every 6 hours
+# System health check every 6 hours
 0 */6 * * * /home/ubuntu/health_check.sh
 
-# Run backup daily at 2 AM
+# Daily backup at 2 AM
 0 2 * * * /home/ubuntu/backup_api.sh
 
-# Run server update every 3 days at 3 AM
+# System updates every 3 days at 3 AM
 0 3 */3 * * * /home/ubuntu/update_server.sh
 ```
 
 ---
 
-## 🧠 Backup Strategies
+## 📂 Backup Strategy Overview
 
-The project implements the following backup types to ensure data integrity:
-
-| Type             | Description                                                                                  |
-| ---------------- | -------------------------------------------------------------------------------------------- |
-| **Full**         | Backups everything. ✅ Reliable recovery, ❌ Uses more storage.                              |
-| **Incremental**  | Backups only changes since the last backup. ✅ Efficient, ❌ Slower restore.                 |
-| **Differential** | Backups changes since the last full backup. ⚖️ Good balance between speed and recovery time. |
+| Method          | Summary                                                                 |
+|-----------------|-------------------------------------------------------------------------|
+| **Full**         | Archives all data. ✅ Reliable, ❌ More storage needed.                  |
+| **Incremental**  | Saves only changes since last backup. ✅ Space-efficient, ❌ Slower restore. |
+| **Differential** | Captures changes since last full backup. ⚖️ Balanced recovery time.      |
 
 ---
 
-## 🧑‍💻 Dependencies
+## 📌 System Requirements & Dependencies
 
-curl (used by health_check.sh to check API endpoints)
+Ensure the following utilities are installed on your server:
 
-pg_dump (used by backup_api.sh to backup the PostgreSQL database)
+- `curl` – Used in health checks
+- `pg_dump` – For PostgreSQL data backups
+- `cron` – For scheduling tasks
 
-cron (used to schedule the scripts)
+---
 
-> **Author:** MABULUKI | University of Dodoma | CS421 – Application Deployment and Management
+> **Created by:** MABULUKI  
+> **Institution:** University of Dodoma  
+> **Course:** CS421 – Application Deployment and Management
+
