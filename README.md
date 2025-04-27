@@ -37,14 +37,14 @@ The API manages:
 
    🌍 Deployed API URL
 Students endpoint:
-http://13.61.18.76:5001/students
+[http://13.61.18.76:5001/students]
 
 Subjects endpoint:
-http://13.61.18.76:5001/subjects
+[http://13.61.18.76:5001/subjects]
 
 🐳 Docker Hub Image
 View Docker Image on Docker Hub:
-https://hub.docker.com/r/your-dockerhub-username/deployment-project-api
+[https://hub.docker.com/r/your-dockerhub-username/deployment-project-api]
 
 
 📂 Assignment Required Files
