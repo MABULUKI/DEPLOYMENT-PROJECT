@@ -1,127 +1,64 @@
-# 🌐 API DEPLOYMENT
+# Deployment Project - Express.js API with PostgreSQL
 
-## 📖 About the Project
+## 📋 Project Description
 
-This is a RESTful API developed using **Express.js with Node.js**, built to manage student details and subject data. It’s hosted on an **Ubuntu-based EC2 instance on AWS**, and enhanced with **automated Bash scripts** for maintaining system performance, backups, and updates. The project was completed as part of the **CS421: Application Deployment and Management** coursework.
+This project is a simple REST API built using:
+- Node.js + Express.js
+- PostgreSQL (database)
+- Docker + Docker Compose
+- Deployed to AWS EC2
 
----
-
-## 📡 API Capabilities
-
-### 💾 GET `/students`
-
-- Returns a collection of **10+ student records**
-- Each record includes:
-  - Student’s name
-  - Enrolled program
-
-### 💾 GET `/subjects`
-
-- Lists all available academic subjects
-- Each record contains:
-  - Subject name
-  - Unique code
-  - Academic year
+The API manages:
+- Students
+- Subjects
 
 ---
 
-## 🧰 Stack & Tools
+## 🚀 Features
 
-| Component         | Technologies Involved               |
-|------------------|-------------------------------------|
-| Backend           | Node.js, Express                   |
-| Database          | PostgreSQL                         |
-| Server & Hosting  | AWS EC2 (Ubuntu), Nginx            |
-| Automation        | Bash scripts, Cron scheduler, pg_dump |
-| Version Control   | Git, GitHub                        |
+- Get list of students
+- Get list of subjects
+- Connects to PostgreSQL inside Docker
+- Fully containerized using Docker Compose
+- Live deployed on AWS EC2 server
 
 ---
 
-## 🧱 Setup Instructions
+## ⚙️ How to Build and Run Locally
 
-### 🧹 Step 1: Clone the Project
+1. Clone the repository:
+   ~bash
+   git clone https://github.com/MABULUKI/DEPLOYMENT-PROJECT.git
+   cd DEPLOYMENT-PROJECT
 
-```bash
-git clone https://github.com/MABULUKI/DEPLOYMENT-PROJECT.git
-cd DEPLOYMENT-PROJECT
-```
+2. Run Docker Compose:
+  ~bash
+   docker-compose up --build
 
-### 📆 Step 2: Install Dependencies
+   🌍 Deployed API URL
+Students endpoint:
+http://13.61.18.76:5001/students
 
-```bash
-npm install
-```
+Subjects endpoint:
+http://13.61.18.76:5001/subjects
 
-### ▶️ Step 3: Launch Locally
+🐳 Docker Hub Image
+View Docker Image on Docker Hub:
+https://hub.docker.com/r/your-dockerhub-username/deployment-project-api
 
-```bash
-node index.js
-```
 
-### 🌍 Step 4: Try the Live Endpoints
+📂 Assignment Required Files
+File	Status
+docker_logs.txt	✅ Uploaded
+docker_ps.png	✅ Uploaded
 
-- [GET /students](http://13.61.18.76:5000/students)
-- [GET /subjects](http://13.61.18.76:5000/subjects)
 
----
+🛠 Troubleshooting Tips
+Ensure .env variables are set correctly.
+If PostgreSQL service restarts, check POSTGRES_PASSWORD.
+If ports are busy, edit .env and docker-compose.yml.
+Use docker-compose down -v to reset containers and volumes if needed.
 
-## 🛡️ Server Automation Scripts
-
-These Bash scripts help with proactive server management:
-
-| Script File        | Role                                                                                               |
-|--------------------|----------------------------------------------------------------------------------------------------|
-| `health_check.sh`  | Checks server performance and API status, writing output to `/var/log/server_health.log`.          |
-| `backup_api.sh`    | Archives the application and PostgreSQL database to `/home/ubuntu/backups`, purging old backups.   |
-| `update_server.sh` | Applies system updates, pulls repo changes, and restarts services. Outputs to `/var/log/update.log`.|
-
-### 🔧 How to Execute
-
-```bash
-chmod +x script_name.sh  # Make the script executable
-./script_name.sh         # Run it manually
-```
-
----
-
-## ⏰ Scheduled Automation (Cron Jobs)
-
-These scripts are scheduled for automatic execution via `cron`:
-
-```cron
-# System health check every 6 hours
-0 */6 * * * /home/ubuntu/health_check.sh
-
-# Daily backup at 2 AM
-0 2 * * * /home/ubuntu/backup_api.sh
-
-# System updates every 3 days at 3 AM
-0 3 */3 * * * /home/ubuntu/update_server.sh
-```
-
----
-
-## 📂 Backup Strategy Overview
-
-| Method          | Summary                                                                 |
-|-----------------|-------------------------------------------------------------------------|
-| **Full**         | Archives all data. ✅ Reliable, ❌ More storage needed.                  |
-| **Incremental**  | Saves only changes since last backup. ✅ Space-efficient, ❌ Slower restore. |
-| **Differential** | Captures changes since last full backup. ⚖️ Balanced recovery time.      |
-
----
-
-## 📌 System Requirements & Dependencies
-
-Ensure the following utilities are installed on your server:
-
-- `curl` – Used in health checks
-- `pg_dump` – For PostgreSQL data backups
-- `cron` – For scheduling tasks
-
----
-
-> **Created by:** MABULUKI  
-> **Institution:** University of Dodoma  
-> **Course:** CS421 – Application Deployment and Management
-
+✨ Credits
+Author: MABULUKI
+Course: CS 421 - Deployment Project
